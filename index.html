@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>James Finn — Political Reporter, The Times-Picayune</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f6f3ee;
+    --mid: #6b6459;
+    --accent: #c03b2d;
+    --rule: #d4cfc6;
+    --card-bg: #edeae4;
+    --max-w: 920px;
+    --side-pad: clamp(1.25rem, 5vw, 3rem);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* ── NAV ─────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
+    background: rgba(246, 243, 238, 0.85);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  nav .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0.85rem var(--side-pad);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav .nav-name {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  nav .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ─────────────────────────────── */
+  .hero {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 7.5rem var(--side-pad) 3.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.35rem;
+    color: var(--ink);
+  }
+
+  .hero .subtitle {
+    font-size: 1rem;
+    color: var(--mid);
+    font-weight: 400;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-row {
+    display: flex;
+    gap: 2.5rem;
+    align-items: stretch;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero .bio {
+    font-size: 0.95rem;
+    line-height: 1.72;
+    color: #3a3832;
+    flex: 1;
+  }
+
+  .hero .bio p + p {
+    margin-top: 0.9rem;
+  }
+
+  .hero .bio a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(192, 59, 45, 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .hero .bio a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  .hero-portrait {
+    width: 260px;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+
+  .hero-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* ── SECTION ──────────────────────────── */
+  section {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--side-pad);
+  }
+
+  .section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3rem 0 2.5rem;
+  }
+
+  .section-heading {
+    font-family: 'Newsreader', serif;
+    font-weight: 600;
+    font-size: 1.55rem;
+    letter-spacing: -0.015em;
+    margin-bottom: 1.25rem;
+    color: var(--ink);
+  }
+
+  /* ── CONTACT ──────────────────────────── */
+  .contact-block {
+    font-size: 0.95rem;
+    line-height: 1.72;
+    color: #3a3832;
+    max-width: 600px;
+  }
+
+  .contact-block a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(192, 59, 45, 0.3);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .contact-block a:hover { text-decoration-color: var(--accent); }
+
+  .social-links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .social-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .social-links a:hover { color: var(--accent); }
+
+  /* ── STORY CARD ───────────────────────── */
+  .story-card {
+    display: block;
+    background: var(--card-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+    margin-bottom: 1.75rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .story-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.07);
+  }
+
+  .story-card .card-body {
+    padding: 1.5rem 1.6rem 1.6rem;
+  }
+
+  .story-card .card-pub {
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--mid);
+    margin-bottom: 0.4rem;
+  }
+
+  .story-card .card-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.28;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.65rem;
+    font-style: italic;
+  }
+
+  .story-card .card-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #4a4840;
+  }
+
+  .story-card .card-cta {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .story-card .card-cta::after {
+    content: ' →';
+    transition: margin-left 0.2s;
+    margin-left: 0;
+  }
+
+  .story-card:hover .card-cta::after {
+    margin-left: 4px;
+  }
+
+  /* ── FOOTER ───────────────────────────── */
+  footer {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 3.5rem var(--side-pad) 3rem;
+    border-top: 1px solid var(--rule);
+    margin-top: 3rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--mid);
+  }
+
+  /* ── RESPONSIVE ───────────────────────── */
+  @media (max-width: 680px) {
+    .hero-row {
+      flex-direction: column-reverse;
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+    .hero-portrait {
+      width: 180px;
+      height: 220px;
+      align-self: flex-start;
+    }
+    .hero { padding-top: 6.5rem; padding-bottom: 2.5rem; }
+    .section-heading { font-size: 1.35rem; }
+    .story-card .card-title { font-size: 1.15rem; }
+    nav .nav-links { gap: 1rem; }
+    nav .nav-links a { font-size: 0.75rem; }
+  }
+
+  /* ── ENTRANCE ANIMATIONS ──────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 { animation: fadeUp 0.7s ease both; }
+  .hero .subtitle { animation: fadeUp 0.7s ease 0.08s both; }
+  .hero-row { animation: fadeUp 0.7s ease 0.16s both; }
+
+  .story-card:nth-child(1) { animation: fadeUp 0.6s ease 0.1s both; }
+  .story-card:nth-child(2) { animation: fadeUp 0.6s ease 0.18s both; }
+  .story-card:nth-child(3) { animation: fadeUp 0.6s ease 0.26s both; }
+  .story-card:nth-child(4) { animation: fadeUp 0.6s ease 0.34s both; }
+  .story-card:nth-child(5) { animation: fadeUp 0.6s ease 0.42s both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-name">James Finn</a>
+    <div class="nav-links">
+      <a href="#contact">Get in Touch</a>
+      <a href="#selected-work">Selected Work</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>James Finn</h1>
+  <p class="subtitle">Investigative Reporter · The Times-Picayune · New Orleans</p>
+  <div class="hero-row">
+    <div class="hero-text">
+      <div class="bio">
+        <p>I'm an investigative reporter at The Times-Picayune in New Orleans, where I focus on federal law enforcement and its overlap with local politics and government. My recent reporting has focused on the federal corruption investigation of former New Orleans Mayor LaToya Cantrell, changes sweeping the Trump Justice Department, ICE detention facilities and the impact of federal immigration enforcement on Louisiana communities.</p>
+        <p>I previously covered New Orleans politics, breaking numerous stories on the city's 2025 mayoral race and Cantrell's embattled outgoing administration. Before that, I covered state government and law enforcement for The Advocate in Baton Rouge, leading coverage of a $45 billion state budget and Gov. Jeff Landry's criminal justice overhaul. I've won awards from the Society of Professional Journalists and have reported from the U.S.–Mexico border, every New Orleans neighborhood and the eye of Hurricane Ida. I speak fluent Spanish and hold a bachelor's degree in history from Middlebury College.</p>
+      </div>
+    </div>
+    <div class="hero-portrait">
+      <img src="portrait.jpg" alt="James Finn, political reporter at The Times-Picayune">
+    </div>
+  </div>
+</header>
+
+<!-- CONTACT -->
+<section id="contact">
+  <hr class="section-rule">
+  <h2 class="section-heading">Get in touch</h2>
+  <div class="contact-block">
+    <p>For sensitive tips, I use <a href="https://signal.me">Signal</a> — my handle is <strong>jamesfinn.82</strong>. For everything else, email me at <a href="/cdn-cgi/l/email-protection#6309050a0d0d23170b060207150c000217064d000c0e"><span class="__cf_email__" data-cfemail="254f434c4b4b65514d404441534a464451400b464a48">[email&#160;protected]</span></a>.</p>
+    <br>
+    <p>I take source protection seriously. If your situation requires extra caution, don't contact me from a work device or network.</p>
+    <div class="social-links">
+      <a href="https://twitter.com/rjamesfinn" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://www.linkedin.com/in/james-finn-8963a1152/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://muckrack.com/james-finn" target="_blank" rel="noopener">Muck Rack</a>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK -->
+<section id="selected-work">
+  <hr class="section-rule">
+  <h2 class="section-heading">Selected Work</h2>
+
+  <!-- STORY 1 -->
+  <a class="story-card" href="https://www.nola.com/news/politics/helena-moreno-campaign/article_0d36aeca-2121-4bde-82ad-52c5c42da03d.html" target="_blank" rel="noopener">
+    <div class="card-body">
+      <p class="card-pub">The Times-Picayune, 2025</p>
+      <h3 class="card-title">'Helena showed up': Inside Moreno's dominant campaign for New Orleans mayor</h3>
+      <p class="card-desc">Based on interviews with four-dozen analysts, campaign staffers, elected officials and political operatives, this story traces how Helena Moreno built a coalition across race and geography to win the New Orleans mayor's race outright — a feat accomplished only once before in the city's modern history.</p>
+      <span class="card-cta">Read the story</span>
+    </div>
+  </a>
+
+  <!-- STORY 2 -->
+  <a class="story-card" href="https://www.nola.com/news/politics/national_politics/iran-new-orleans-woman-arrested/article_bcfdc93e-01dc-4021-b5f8-a91ded5ed784.html" target="_blank" rel="noopener">
+    <div class="card-body">
+      <p class="card-pub">The Times-Picayune, 2025</p>
+      <h3 class="card-title">Iranian immigrant who has lived in New Orleans nearly 50 years arrested outside Lakeview home</h3>
+      <p class="card-desc">Mandonna "Donna" Kashanian came to the United States in 1978 on a student visa, married an American citizen and never missed an immigration check-in. ICE agents detained her while she gardened outside her home, highlighting how Trump's immigration crackdown has ensnared people who were long allowed to stay. She was later released after neighborhood outcry.</p>
+      <span class="card-cta">Read the story</span>
+    </div>
+  </a>
+
+  <!-- STORY 3 -->
+  <a class="story-card" href="https://www.nola.com/news/politics/latoya-cantrell-mayor-investigation/article_6935d626-1035-4155-a9db-3aab2005acd3.html" target="_blank" rel="noopener">
+    <div class="card-body">
+      <p class="card-pub">The Times-Picayune, 2025</p>
+      <h3 class="card-title">Questions swirl around federal investigation of New Orleans Mayor LaToya Cantrell</h3>
+      <p class="card-desc">An examination of the long-running federal investigation into New Orleans Mayor LaToya Cantrell, which has ensnared multiple allies and prompted questions about whether the mayor herself would face charges. Award-winning coverage from the Society of Professional Journalists.</p>
+      <span class="card-cta">Read the story</span>
+    </div>
+  </a>
+
+  <!-- STORY 4 -->
+  <a class="story-card" href="https://www.nola.com/news/politics/national_politics/louisiana-soldiers-on-mexico-border/article_a0122d24-f930-11ee-86dd-47dfc542a907.html" target="_blank" rel="noopener">
+    <div class="card-body">
+      <p class="card-pub">The Times-Picayune, 2024</p>
+      <h3 class="card-title">On a newly quiet stretch of U.S.–Mexico border, Louisiana soldiers sit around, watch and wait</h3>
+      <p class="card-desc">Reporting from the Texas–Mexico border, this story documents what Louisiana National Guard soldiers actually do on their deployment — watching an increasingly quiet stretch of borderland as crossings decline, raising questions about the purpose and cost of state-led border missions.</p>
+      <span class="card-cta">Read the story</span>
+    </div>
+  </a>
+
+  <!-- STORY 5 -->
+  <a class="story-card" href="https://www.theadvocate.com/baton_rouge/news/crime_police/as-bodies-piled-up-at-hotels-are-owners-ignoring-problems/article_7d90126e-8570-11ed-8026-434bea1fed36.html" target="_blank" rel="noopener">
+    <div class="card-body">
+      <p class="card-pub">The Advocate, 2022</p>
+      <h3 class="card-title">Bodies piled up at these Louisiana hotels. Did corporate owners ignore the problem?</h3>
+      <p class="card-desc">An investigation into a pattern of deaths at Louisiana hotels and the corporate owners who may have looked the other way. The story examines whether cost-cutting and negligence at budget hotel chains created dangerous conditions that contributed to a string of fatalities.</p>
+      <span class="card-cta
